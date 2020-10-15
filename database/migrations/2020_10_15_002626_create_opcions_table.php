@@ -16,11 +16,11 @@ class CreateOpcionsTable extends Migration
         Schema::create('opcions', function (Blueprint $table) {
             $table->id();
             $table->string('descripcion', 32);
-            $table->integer('id_tipo')->unsigned();
-            $table->integer('estatus');
+            $table->integer('fktipo');
+            $table->integer('fkestatus');
             $table->timestamps();
-            $table->foreign('id_tipo')->references('id')->on('tipo_opcions');
-            $table->foreign('estatus')->references('id')->on('estatus');
+            $table->foreign('fktipo')->references('id')->on('tipo_opcions');
+            $table->foreign('fkestatus')->references('id')->on('estatus');
         });
     }
 
