@@ -23,7 +23,10 @@
 </head>
 
 <body class="">
+
+
  <div class="wrapper ">
+  }
 
 <!-- MENU -->
 
@@ -80,67 +83,37 @@
 
 
         <ul class="nav">
-          <li class="nav-item active ">
-            <a class="nav-link" href="../examples/dashboard.html">
-              <i class="material-icons">dashboard</i>
-              <p> Inicio </p>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" data-toggle="collapse" href="#pagesExamples">
-              <i class="material-icons">settings</i>
-              <p> Administración
-                <b class="caret"></b>
-              </p>
-            </a>
-            <div class="collapse" id="pagesExamples">
-              <ul class="nav">
-                <li class="nav-item ">
+ @foreach($menu as $dato)
+
+          <li <?php if($dato->descripcion=='INICIO'){ echo 'class="nav-item active"';}else{ echo 'class="nav-item "';} ?>  >
+            <a <?php if($dato->descripcion=='INICIO'){ echo 'class="nav-link""';}else{ echo 'class="nav-link" data-toggle="collapse"';} ?>   href="#{{$dato->descripcion}}">
+              <i class="material-icons">{{ $dato->icon }}</i>
+              <p> {{$dato->descripcion}}@if($dato->descripcion!='INICIO')<b class="caret"></b> @endif</p>
+             </a>
+          
+             <div class="collapse" id="{{$dato->descripcion}}">
+                <ul class="nav">
+               @foreach($menu2 as $dato2)
+                 <?php if ($dato2->opcion_menu == $dato->id) {  ?>
+              
+                  <li class="nav-item ">
                   <a class="nav-link" href="../examples/pages/pricing.html">
                     <span class="sidebar-mini"> P </span>
-                    <span class="sidebar-normal"> Gestion de Pagos </span>
+                    <span class="sidebar-normal"> <?php echo $dato2->descripcion ?>  </span>
                   </a>
                 </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="../examples/pages/rtl.html">
-                    <span class="sidebar-mini"> TG </span>
-                    <span class="sidebar-normal"> Tipo de Gastos </span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="../examples/pages/timeline.html">
-                    <span class="sidebar-mini"> TI </span>
-                    <span class="sidebar-normal"> Gestión de iva </span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="../examples/pages/login.html">
-                    <span class="sidebar-mini"> GA </span>
-                    <span class="sidebar-normal"> Gestión Alicuotas </span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="../examples/pages/register.html">
-                    <span class="sidebar-mini"> GP </span>
-                    <span class="sidebar-normal"> Gestión Propietarios </span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="../examples/pages/lock.html">
-                    <span class="sidebar-mini"> GAP </span>
-                    <span class="sidebar-normal"> Gestión de Apartamentos </span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="../examples/pages/user.html">
-                    <span class="sidebar-mini"> GU </span>
-                    <span class="sidebar-normal"> Gestión Usuario </span>
-                  </a>
-                </li>
-             
-              </ul>
-            </div>
+               <?php } ?>
+                  @endforeach
+                </ul>
+
+
+              </div>
+           
           </li>
+    @endforeach
+
+
+       
           
          
         
@@ -204,6 +177,9 @@
         	<div class="content">
           		<div class="container-fluid">   
 					@yield('content')
+
+       
+
 				</div>
 			</div> 
 		</div>
