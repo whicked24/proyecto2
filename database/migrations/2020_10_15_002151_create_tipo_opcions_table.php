@@ -16,7 +16,7 @@ class CreateTipoOpcionsTable extends Migration
         Schema::create('tipo_opcions', function (Blueprint $table) {
             $table->id();
             $table->string('descripcion',32);
-            $table->integer('fkestatus');
+            $table->integer('fkestatus')->default(1);
             $table->timestamps();
             $table->foreign('fkestatus')->references('id')->on('estatus');
         });

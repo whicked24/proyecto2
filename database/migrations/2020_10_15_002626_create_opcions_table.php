@@ -17,7 +17,9 @@ class CreateOpcionsTable extends Migration
             $table->id();
             $table->string('descripcion', 32);
             $table->integer('fktipo');
-            $table->integer('fkestatus');
+            $table->integer('opcion_menu');
+            $table->integer('fkestatus')->default(1);
+            $table->string('icon', 32)->default('dashboard');
             $table->timestamps();
             $table->foreign('fktipo')->references('id')->on('tipo_opcions');
             $table->foreign('fkestatus')->references('id')->on('estatus');

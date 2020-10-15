@@ -23,7 +23,7 @@ class CreatePersonasTable extends Migration
             $table->string('telefono_local',15)->nullable();
             $table->string('telefono_celular',15)->nullable();
             $table->string('correo',100);
-            $table->integer('fkestatus');
+            $table->integer('fkestatus')->default(1);
             $table->integer('usuario_registro');
             $table->integer('usuario_modifico');
             $table->integer('perfil')->nullable();
